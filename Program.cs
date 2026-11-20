@@ -25,7 +25,7 @@ builder.Services.AddControllers();
 
 // Permite que Angular (ng serve, puerto 4200) llame a esta API
 builder.Services.AddCors(o => o.AddPolicy("angular", p => p
-    .WithOrigins("http://localhost:4200")
+    .WithOrigins("http://localhost:4200", "https://reposteria-web.onrender.com")
     .AllowAnyHeader()
     .AllowAnyMethod()));
 
