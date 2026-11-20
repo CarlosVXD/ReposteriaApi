@@ -1,0 +1,61 @@
+### Probar la API con la extensión "REST Client" de VS Code o con Visual Studio.
+### Cambia el puerto si usaste otro en appsettings.json.
+@api = http://localhost:5080/api
+
+### Estado del servidor
+GET {{api}}/salud
+
+### Pedidos (opcional: ?estado=Entregado  o  ?q=maria)
+GET {{api}}/pedidos
+
+### Crear un pedido (cambia la fecha por una libre, por ejemplo hoy + 4)
+POST {{api}}/pedidos
+Content-Type: application/json
+
+{
+  "cliente": "Laura Duarte",
+  "producto": "Chocolate · 20 personas · Unicornio",
+  "receta": "tematica",
+  "escala": 1,
+  "complejidad": "Alta",
+  "fecha": "2026-10-26"
+}
+
+### Cambiar el estado de un pedido
+PATCH {{api}}/pedidos/7/estado
+Content-Type: application/json
+
+{ "estado": "Cancelado" }
+
+### Agenda: los próximos 14 días
+GET {{api}}/agenda/dias
+
+### Agenda: ¿cabe un pedido de complejidad Alta ese día?
+POST {{api}}/agenda/verificar
+Content-Type: application/json
+
+{ "fecha": "2026-10-24", "complejidad": "Alta" }
+
+### Capacidad diaria de cada recurso
+GET {{api}}/agenda/capacidad
+
+### Insumos
+GET {{api}}/insumos
+
+### Subir el precio de la mantequilla (insumo 3)
+PUT {{api}}/insumos/3/precio
+Content-Type: application/json
+
+{ "precioActual": 40000 }
+
+### Rentabilidad: pedidos afectados por alzas
+GET {{api}}/rentabilidad
+
+### Panel ejecutivo completo
+GET {{api}}/panel
+
+### Cotizar lo que entendió la Captura
+POST {{api}}/captura/cotizar
+Content-Type: application/json
+
+{ "sabor": "Chocolate", "tamano": "20 personas", "diseno": "Unicornio" }
